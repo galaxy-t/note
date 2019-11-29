@@ -121,7 +121,10 @@
     command + shift + enter		完成代码结构
     control + space				基本完成，类似于代码提示
     tontrol + J					查看方法
-   
+    control + Z                 撤销
+    control + shift + Z         反向撤销
+    alt + 数字                   各种栏位切换
+    alt + 左右箭头                切换 tab 页
 ***
     
 ### 一些其它便捷操作
