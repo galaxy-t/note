@@ -72,6 +72,45 @@
     > Lombok 简洁开发所需要使用到的插件
     
     > File --- Settings --- Plugins , 搜索 lombok , 第一个 Lombok plugin
+    
+2. Docker Integration
+
+    > IDEA 自带的一个插件貌似(具体忘了是自带的还是安装上的了，去插件库里搜一下不就知道了)
+    
+    > 首先使用必须先在项目里，我喜欢在根目录下写一个 Dockerfile，格式如下
+    
+      `
+        # 指定基础镜像，必须为第一个命令
+        # 格式
+        #   FROM <image>
+        #   FROM <image>:<tag>
+        #   FROM <image>@<digest>
+        # tag或digest是可选的，如果不使用这两个值时，会使用latest版本的基础镜像
+        FROM java:8
+        # MAINTAINER: 维护者信息
+        MAINTAINER galaxy-t
+        # 指定于外界交互的端口
+        EXPOSE 8083
+        # 用于指定持久化目录
+        VOLUME /tmp
+        # 用于指定传递给构建运行时的变量，此处的 JAR_FILE 被配置在 pom 文件中
+        # ARG JAR_FILE
+        # 将本地文件添加到容器中，tar类型文件会自动解压(网络压缩资源不会被解压)，可以访问网络资源，类似wget
+        ADD /target/user-1.0-SNAPSHOT.jar app.jar
+        # 配置容器，使其可执行化
+        ENTRYPOINT ["java","-jar","/app.jar"]
+      `
+    > 有了 Dockerfile 打开它，你会发现在它 FROM 那一行左边有一个不对是两个（重叠着的）向右的三角（也可能叫做箭头吧，这也不能叫箭头），
+    > 点它，有三个选项，最后一个，New***（第二次会变成 Edit*** ） 点击，基本上是不用动太多，注意改动几个地方即可，其它的默认就行了
+    > Image tag : 这个玩意主要是为了你把项目打包成镜像之后镜像叫什么名字，最好改一下，否则 Docker 会自动生成一个，不好识别
+    > Container name : 这个是你在打包上传完镜像然后启动的那个容器的名字，最好改一下，否则 Docker 会自动生成一个，不好识别
+    > 以上两个是为了好识别，如果你不愿意改动那也不会发生什么本质上的问题，顶多费眼睛，下面的必须得注意，划重点了啊
+    > Run options : -d -v /home/app/user:/tmp --privileged=true --net=host
+    > 这个指令就不过多解释了，就是首次启动容器的时候指定的那些，可以根据实际情况自己改一下
+    > 安装配置都完事了，怎么用呢，注意看 Dockerfile 中的 ADD 那一行， /target/*****，插件会到这个目录下找你的 jar 包打镜像
+    > 所以，你需要先  mvn clean compile package 一下，当然了，也可以直接使用 IDEA 的 maven 插件
+    
+    
                   
 
 2. RestfulToolki
