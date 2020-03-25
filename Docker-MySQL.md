@@ -3,7 +3,7 @@
     
     拉取镜像，本次使用的版本是 8.0.19
     
-### docker run -di --name=mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+### docker run -di --name=mysql8 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Q1W2E3**# mysql
     
     通过镜像创建容器
     -p 代表端口映射，格式为 宿主机映射端口:容器运行端口
@@ -17,7 +17,7 @@
 
     修改加密规则
     
-### ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+### ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Q1W2E3**#';
 
     修改密码
     
