@@ -21,7 +21,7 @@
     > --appendonly yes：redis 运行时开启持久化
     > --requirepass "123456"：设置 redis 登陆密码    
     
-    > docker run -d  -v /home/redis/data:/data --privileged=true --net=host --restart=always --name redis redis:5.0.7 --appendonly yes --requirepass "123456"
+    > docker run -d  -v /root/app/redis:/data --privileged=true --net=host --restart=always --name redis redis:5.0.7 --appendonly yes --requirepass "123456"
     > host 模式
     
     
