@@ -176,3 +176,21 @@
     > MAVEN打包发布DOCKER镜像命令
       mvn clean package dockerfile:build -DskipTests
     
+
+### 导入导出镜像
+
+1. 导出镜像, -o 为导出的文件重命名,必须为 tar 格式, 最后的 redis 是镜像的名字,最终 redis.tar 会保存到当前目录下
+    
+    > docker save -o redis.tar redis
+                                                           
+2. 导入镜像
+
+    > docker load < redis.tar
+                                                         
+### 导入导出容器       
+
+1. 导出容器, -o 为导出的文件重命名,必须为 tar 格式, 最后的 mysql8 是容器的名字,最终 mysql8.tar 会保存到当前目录下
+
+    >   docker export -o mysql8.tar mysql8
+
+2. 导入容器
