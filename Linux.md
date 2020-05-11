@@ -37,13 +37,17 @@
 
 3. 添加放行端口
 
-    > firewall-cmd --zone=public --add-port=8161/tcp --permanent （--permanent永久生效，没有此参数重启后失效）
+    > firewall-cmd --zone=public --add-port=3306/tcp --permanent （--permanent永久生效，没有此参数重启后失效）
 
-4. 重载防火墙
+4. 删除放行端口
+
+    > firewall-cmd --zone=public --remove-port=2375/tcp --permanent
+
+5. 重载防火墙
 
     > firewall-cmd --reload
 
-5. 查看放行端口
+6. 查看放行端口
 
     > iptables-save
 
