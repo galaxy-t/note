@@ -1,7 +1,7 @@
 ### Maven 
 
 
-### 注
+### Maven 启用 https 之后如何解决 ssl 验证
 
     在使用阿里云代理的时候,配置如下
     
@@ -23,4 +23,8 @@
     2: 在 IDEA 的 MAVEN 设置中有一个 Importing 的选项,右侧 VM potions for importer 中添加 -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true 
         但是有时候好用有时候不怎么好用,第一种上来就可以了
     
+
+### IDEA 中 项目依赖都有但是 build 项目的时候提示包不存在
+    
+    执行  mvn idea:module 命令就可以解决此问题
 
