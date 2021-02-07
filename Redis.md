@@ -38,7 +38,7 @@
         
     5: 配置
     
-        cd cd /usr/local/redis      进入到 redis 安装目录的根目录
+        cd /usr/local/redis      进入到 redis 安装目录的根目录
         mkdir etc                   创建一个 etc 文件夹
         mv /root/redis-5.0.5/redis.conf /usr/local/redis/etc/   将 redis 提供的配置文件移动到新建的 etc 目录下
   
