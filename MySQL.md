@@ -3,6 +3,14 @@
 
 ---
 
+    SELECT u.real_name,COUNT(h.id) AS amount
+    FROM t_user u LEFT JOIN t_business_huoke h ON u.id = h.broker_id
+    WHERE h.create_time BETWEEN '' AND ''
+    GROUP BY u.id
+    ORDER BY amount DESC
+
+---
+
 ### 解压版安装
 
 1. 下载
