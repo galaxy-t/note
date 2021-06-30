@@ -64,7 +64,7 @@
 
     > 编辑文件 vim /usr/lib/systemd/system/docker.service
     
-    > 将 ExecStart 修改为 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
+    > 将 ExecStart 修改为 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:8079 -H unix://var/run/docker.sock
     
     > 通知docker服务做出的修改 systemctl daemon-reload
     
