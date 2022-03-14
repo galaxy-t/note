@@ -68,7 +68,7 @@
      
 ### 哨兵模式
     
-    哨兵模式就是在主从模式的基础上为主从模式添加了选举功能 , 即在 master 不能提供服务的情况下 , 哨兵服务会在其他可用的 slave 中选举一个座位 master 使用
+    哨兵模式就是在主从模式的基础上为主从模式添加了选举功能 , 即在 master 不能提供服务的情况下 , 哨兵服务会在其他可用的 slave 中选举一个作为 master 使用
     当前面的 master 重新提供服务后其会自动降级为 slave
     
     cp /root/redis-5.0.5/sentinel.conf /usr/local/redis/etc/        首先将 redis 提供的默认的哨兵配置文件拷贝到安装目录下
@@ -154,5 +154,47 @@
     CONFIG get requirepass  通过该命令查看是否设置了密码
     CONFIG set requirepass "123456"        设置密码为 123456
     设置密码后如果通过命令行连接成功后是操作不了 redis 的 , 需要执行 AUTH "123456" 来验证密码才能正常执行
+    
+
+## 数据类型
+
+    Redis 支持五种数据类型: string(字符串), hash(哈希), list(列表), set(集合) 及 zset(有序集合)
+
+### string(字符串)
+
+    string 是 redis 最基本的类型, 一个 key 对应一个 value
+    string 类型是二进制安全的, 意思是 redis 的 string 可以包含任何数据, 比如 jpg 图片或者序列化的对象
+    string 类型是 redis 最基本的数据类型, string 类型的值最大能存储 512MB
+    常用命令: set,get,decr,incr,mget 等
+
+### hash(哈希)
+
+    hash 是一个键值对集合, 是一个 string 类型的 field和value 的映射表, hash 特别适合用于存储对象
+    每个 hash 可以存储 40多亿 的键值对
+    常用命令: hget,hset,hgetall 等
+
+### list(列表)
+
+    列表是简单的字符串列表, 按照插入顺序排序, 你可以添加一个元素到列表的头部(左侧)或者尾部(右边)
+    list 类型经常会被用于消息队列的服务, 已完成多程序之间的消息交换
+    常用命令: lpush,rpush,lpop,rpop,lrange 等
+    列表最多可以存储 40多亿 个元素
+
+### set(集合)
+
+    redis 的 set 是 string 类型的无序集合, 和列表一样, 在执行 插入,删除和判断 是否存在某元素时, 效率非常高, 
+    集合最大的优势在于进行交集并集差集等操作, set 可包含的最大元素数量是 40 多亿
+    集合是通过哈希表实现的, 所以 添加,删除,查找 的复杂度都是 O(1)
+    常用命令: sadd,spop,smembers,sunion 等
+
+### zset(有序集合)
+
+    zset 和 set 一样也是 string 类型元素的集合, 且不允许重复的成员
+    不同的是每个元素都会关联一个 double 类型的分数, redis 正是通过分数来为集合中的成员进行从小到大的排序
+    zset 成员是唯一的, 但 分数(score) 却可以重复
+    set 插入是有序的, 即自动排序
+    常用命令: zadd,zrange,zrem,zcard 等
+    当你需要一个有序的并且不重复的集合列表时, 那么可以选择 zset 数据结构
+
     
     
