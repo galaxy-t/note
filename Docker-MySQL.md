@@ -57,3 +57,10 @@
     刷新权限
     
 ### 必要的时候关闭防火墙
+
+
+===
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jsyydt@1234';
+CREATE USER 'root'@'%' IDENTIFIED BY 'Jsyydt@1234';
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Jsyydt@1234';
