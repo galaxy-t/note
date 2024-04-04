@@ -23,8 +23,7 @@
     
     > docker run -d  -v /usr/local/redis:/data --privileged=true --net=host --restart=always --name redis redis:5.0.7 --appendonly yes --requirepass "123456"
     > host 模式
-    
-    
-    
+
+
     
     

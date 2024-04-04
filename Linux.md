@@ -51,3 +51,6 @@
 
     > iptables-save
 
+### 查看端口占用情况
+
+   > netstat -tlunp

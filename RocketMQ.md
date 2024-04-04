@@ -53,3 +53,15 @@
 
 * 一篇将 rocketmq 打成 docker 镜像的文章 https://blog.csdn.net/weixin_37946205/article/details/86617965
 
+
+## 版本 5.12.4
+
+1. 下载解压后依然修改 bin 目录下面的 runbroker.sh和runserver.sh 两个文件, -Xms256m -Xmx256m -Xmn128m 三个参数这样设置即可
+2. 开启远程访问, 修改 conf/broker.conf, 添加两行 namesrvAddr = xx.xx.xx.xx:9876 和 brokerIP1 = xx.xx.xx.xx, 其中 xx.xx.xx.xx 为部署服务器的公网 ip 地址
+3. 启动 namesrv, nohup sh bin/mqnamesrv -n 121.43.144.125:9876 &
+4. 验证 namesrv 是否启动成功, tail -f ~/logs/rocketmqlogs/namesrv.log
+5. 启动 broker + proxy, nohup sh bin/mqbroker -n 121.43.144.125:9876 -c conf/broker.conf  --enable-proxy &
+6. 验证是否启动成功, tail -f ~/logs/rocketmqlogs/proxy.log 
+7. 关闭服务, sh bin/mqshutdown broker 和  sh bin/mqshutdown namesrv
+8. 注: 默认使用 jdk8 启动不会报错, 用 jdk17 会出现各种各样恶心的问题
+
