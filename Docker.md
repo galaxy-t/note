@@ -65,7 +65,8 @@
     > 编辑文件 vim /usr/lib/systemd/system/docker.service
     
     > 将 ExecStart 修改为 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:8079 -H unix://var/run/docker.sock
-    
+   ExecStart=/usr/bin/dockerd --tlsverify --tlscacert=/root/docker-certs/ca.pem --tlscert=/root/docker-certs/server-cert.pem --tlskey=/root/docker-certs/server-key.pem -H tcp://0.0.0.0:8079 -H unix:///var/run/docker.so
+
     > 通知docker服务做出的修改 systemctl daemon-reload
     
     > 重启 service docker restart（至今我还是喜欢使用这种启停服务的命令）
